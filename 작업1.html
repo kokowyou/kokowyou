@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인트로 화면</title>
+  <style>
+    /* 전체 배경 설정 */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #AFCDFF; /* 파스텔톤 녹청색 */
+      font-family: "Pretendard", sans-serif;
+      overflow: hidden;
+    }
+
+    /* 문장 스타일 */
+    h1 {
+      font-size: 2.2rem;
+      color: #ffffff;
+      opacity: 0;
+      animation: fadeInText 1.8s ease forwards;
+    }
+
+    /* 버튼 스타일 */
+    .login-btn {
+      margin-top: 100px;
+      padding: 15px 60px;
+      background-color: #ffffff;
+      color: #4A6FA5;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeInButton 2.3s ease forwards;
+      animation-delay: 0.5s;
+      transition: transform 0.2s ease;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* 텍스트 애니메이션 */
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 버튼 애니메이션 */
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>소율에게, 지효가</h1>
+  <button class="login-btn" onclick="location.href='작업2.html'">로그인하기</button>
+</body>
+</html>
