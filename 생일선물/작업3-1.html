@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>작업3-1</title>
+<style>
+  body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: #eaf6ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    overflow-x: hidden;
+    animation: fadeIn 2s ease forwards;
+  }
+
+  h1 {
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    text-align: center;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+  }
+
+  button {
+    opacity: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    background-color: #91c9ff;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    animation: fadeIn 2s ease forwards;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+    background-color: #7bb8f0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 안내창 스타일 */
+  #popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 450px;
+    max-height: 80vh;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+    padding: 25px;
+    text-align: center;
+    animation: fadeInPopup 0.8s ease forwards;
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  @keyframes fadeInPopup {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+
+  #popup img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 10px auto;
+    display: block;
+  }
+
+  #popup p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+    word-break: keep-all;
+    margin-top: 15px;
+  }
+
+  #popup button {
+    margin-top: 20px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    background-color: #91c9ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  #popup button:hover {
+    background-color: #7bb8f0;
+  }
+
+  /* 닫기(X) 버튼 */
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #91c9ff;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    color: #7bb8f0;
+  }
+</style>
+</head>
+<body>
+
+  <br><br><br><h1 style="animation-delay: 0s;">해결사 지효🧙🏻‍♀️🪄</h1>
+  <br><br><br>
+  <h1 style="animation-delay: 1.5s;">뭐가 고민돼?!</h1>
+
+  <div class="btn-container">
+    <button id="btn1" style="animation-delay: 2.5s;">🍴</button>
+    <button id="btn2" style="animation-delay: 3s;">❤️</button>
+    <button id="btn3" style="animation-delay: 3.5s;">❔</button>
+  </div>
+
+  <div id="popup"></div>
+
+<script>
+  // 버튼1 – 음식 랜덤 추천
+  document.getElementById('btn1').addEventListener('click', function() {
+    const options = ["떡볶이", "라면", "볶음밥", "샐러드", "마라탕", "밥", "우동", "피자", "쌀국수", "순대", "만두", "카레", "삼겹살", "돈까스", "햄버거", "샤브샤브", "냉면", "김밥", "샌드위치", "찜닭"];
+    const random = options[Math.floor(Math.random() * options.length)];
+    alert(`오늘은 ${random} 어땡!?!? 시르면 다시 골라바.. 🍽️`);
+  });
+
+  // 버튼2 – 위로 문구 랜덤
+  document.getElementById('btn2').addEventListener('click', function() {
+    const messages = [
+      "완벽하지 않아도 괜찮아ㅜ.ㅜ 계속 가는 게 중요해!",
+      "너는 나에게 너무너무 소중한 사람이야 💙",
+      "스스로를 믿어봐!",
+      "너가 사람을 죽인대도.. 난 너 편이다능..",
+      "걱정될 땐 주위를 살피면서 가보장!! 놓쳤던 게 있을 수도 있어 ㅠ.ㅠ",
+      "정신병을 치료하려면 지효가 필요하단 사실 잊지마 ♡ 늘 곁에 있어줄게",
+      "이때까지 너한테 있었던 안 좋은 일 중에 너가 잘못한 거 하나도 없었어!!!!! 앞으로도 없을거야. 내가 믿어 너를!",
+      "사랑행 💕",
+      "세상이 벅찰 때 너희집 놀이터에서 뒹굴뒹굴 구르던 지효를 생각해봐 ^..^ 마음이 조금 편해질 수도..",
+      "너가 행복하길 바라 🌸"
+    ];
+    const random = messages[Math.floor(Math.random() * messages.length)];
+    alert(random);
+  });
+
+  // 버튼3 – 단계별 반응
+  let clickCount = 0;
+  const popup = document.getElementById('popup');
+
+  document.getElementById('btn3').addEventListener('click', function() {
+    clickCount++;
+    popup.style.display = 'block';
+    popup.innerHTML = ''; // 초기화
+
+    if (clickCount === 1) {
+      popup.innerHTML = `
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <p>앗! 잘못된 접근입니다.</p>
+      `;
+    } 
+    else if (clickCount === 2) {
+      popup.innerHTML = `
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <p>앗!! 잘못됐다니까요!!</p>
+      `;
+    } 
+    else if (clickCount === 3) {
+      popup.innerHTML = `
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <p>저기요!! 그만 누르세요 ㅠㅠ</p>
+      `;
+    } 
+    else if (clickCount === 4) {
+      popup.innerHTML = `
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <img src="이미지1.png" alt="image1">
+        <p>인내심을 가지고 계속해서 같은 버튼을 눌렀던 이소율 너!!<br><br>
+        잘 안되는 일도… 어려운 일도… 이렇게 계속 시도하다보면 언젠가 결과가 좋은 끝을 맺을 수 있을거야.<br><br>
+        비밀 암호를 확인했다면 화면을 나가서 다음 버튼으로 이동해줘 >.<</p>
+        <button onclick="location.href='작업3.html'">시작으로 돌아가기</button>
+      `;
+    } 
+    else {
+      popup.innerHTML = `
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <p>이미 메시지를 모두 확인했어!!</p>
+      `;
+    }
+  });
+
+  function closePopup() {
+    popup.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>암호 입력</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f8ff;
+        font-family: sans-serif;
+    }
+    input {
+        padding: 10px;
+        font-size: 1.2rem;
+        width: 150px;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        border: none;
+        background-color: #87cefa;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    button:hover {
+        background-color: #00bfff;
+    }
+</style>
+</head>
+<body>
+
+<input type="password" id="passwordInput" placeholder="암호 입력">
+<button id="checkBtn">❤️</button>
+
+<script>
+document.getElementById('checkBtn').addEventListener('click', () => {
+    const password = document.getElementById('passwordInput').value;
+    if(password === '486') {
+        window.location.href = '작업3-4.html';
+    } else {
+        alert('다시해보걸아');
+    }
+});
+
+// 엔터 눌러도 확인 가능
+document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') {
+        document.getElementById('checkBtn').click();
+    }
+});
+</script>
+
+</body>
+</html>

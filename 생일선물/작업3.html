@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>작업3</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #e8f5ff;
+      font-family: "Pretendard", sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1, h2 {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 1.8s ease forwards;
+    }
+
+    h2 { animation-delay: 0.8s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .button-section {
+      margin-top: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .circle-btn {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: none;
+      background: #b9e4ff;
+      color: #3a3a3a;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .circle-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    /* 설명서 모달 */
+    .modal-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .modal h3 {
+      color: #4a6fa5;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    .modal p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      background-color: #AFCDFF;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .close-btn:hover {
+      background-color: #9AC8FF;
+    }
+
+    /* behind 버튼 */
+    .behind-section {
+      margin-top: 200px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+    }
+
+    .behind-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .behind-btn {
+      width: 90%;
+      max-width: 400px;
+      height: 100px;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      font-size: 1.5rem;
+      color: #4A6FA5;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .behind-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <br><br><br><br>
+  <h1 id="welcomeName"></h1><br>
+  <h2>환영합니다</h2>
+
+  <!-- 버튼 영역 -->
+  <div class="button-section">
+    <button class="circle-btn fade-section" onclick="openManual()">📜</button>
+    <button class="circle-btn fade-section" onclick="location.href='작업3-1.html'">❗️</button>
+    <button class="circle-btn fade-section" onclick="location.href='작업3-2.html'">🔮</button>
+    <button class="circle-btn fade-section" onclick="location.href='작업3-3.html'">💌</button>
+    <button class="circle-btn fade-section" onclick="location.href='작업4.html'">🔒</button>
+    <br><br><br><br>
+  </div>
+
+  <!-- 설명서 모달 -->
+  <div class="modal-bg" id="manualModal">
+    <div class="modal">
+      <h3>암호 해독서</h3>
+      <p>
+        소율에게<br>
+        3개의 버튼에서 숨겨져 있는 지효를 눌러봐<br>
+        지효가 얘기해준 암호를 조합하면 🔒를 열 수 있어<br>
+      </p>
+      <button class="close-btn" onclick="closeManual()">닫기</button>
+    </div>
+  </div>
+
+
+  <script>
+    // 로그인한 사용자 이름 불러오기
+    const username = sessionStorage.getItem("username") || "사용자";
+    document.getElementById("welcomeName").textContent = `${username}의 공간`;
+
+    // 버튼 스크롤 페이드인
+    const fadeSections = document.querySelectorAll('.fade-section');
+    window.addEventListener('scroll', () => {
+      fadeSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section.classList.add('visible');
+        }
+      });
+    });
+
+    // 설명서 모달 열기
+    function openManual() {
+      document.getElementById("manualModal").style.display = "flex";
+    }
+
+    // 설명서 모달 닫기
+    function closeManual() {
+      document.getElementById("manualModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

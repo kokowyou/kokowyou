@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소율에게,</title>
+<style>
+  body {
+    font-family: "Pretendard", sans-serif;
+    background: linear-gradient(180deg, #f8f9ff, #ffeaf3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  h1, h3 {
+    opacity: 0;
+    animation: fadeInText 2s ease forwards;
+  }
+
+  h3 {
+    animation-delay: 1.2s;
+    width: 70%;
+    line-height: 1.7em;
+  }
+
+  .emoji {
+    font-size: 200px;
+    cursor: pointer;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeInEmoji 2s ease forwards;
+    animation-delay: 2.2s;
+    transition: transform 0.3s;
+  }
+
+  .emoji:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInEmoji {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 안내창 스타일 */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    padding: 30px;
+    text-align: center;
+    z-index: 10;
+    animation: fadeInPopup 0.6s ease;
+  }
+
+  @keyframes fadeInPopup {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+
+  .popup img {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .popup p {
+    font-size: 18px;
+    color: #444;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .close-btn:hover {
+    color: black;
+  }
+</style>
+</head>
+<body>
+  <h1>소율에게,</h1>
+  <h3>소율아 안녕! <br> 여기 있는 모든 건 내가 4월부터 열심히 코딩해서 짠 페이지들이야.  
+  <br>매일 조금씩 밖에 못해서 생각보다 별 거 없을 수도 있고, 엉성할 수도 있지만  
+  <br>너가 이걸 보고 기뻐했으면 좋겠어 >..<  
+  <br>20살의 너에게 20살의 내가 남기는.  
+  <br>너에게 주면 이제 더 이상 수정할 수 없는 것들.  
+  <br>이걸 내가 계속 보고 또 보면, 고치고 싶은 부분들이 점점 늘어나겠지만...  
+  <br>그런 것들까지 웃으며 받아줄래?  
+  <br>나로 인해서 한번 더 웃고, 한번 더 행복하길 바라.  
+  <br>사랑해. 지효가.</h3>
+
+  <div class="emoji">💌</div>
+
+  <div class="popup" id="popup">
+    <span class="close-btn" onclick="closePopup()">×</span>
+    <img src="이미지3.png" alt="이미지3">
+    <p>숫자 세 개를 조합하면 나오는 단어가<br>너에게 늘 전하는 내 마음이야.</p>
+  </div>
+
+  <script>
+    const emoji = document.querySelector('.emoji');
+    const popup = document.getElementById('popup');
+
+    emoji.addEventListener('click', () => {
+      popup.style.display = 'block';
+    });
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

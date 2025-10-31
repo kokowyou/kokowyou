@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>오늘의 운세</title>
+<style>
+  body {
+    font-family: 'Pretendard', sans-serif;
+    background: linear-gradient(to bottom, #cbe8ff, #f5e6ff);
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: fadeIn 2s ease forwards;
+  }
+
+  h1, h2, h3 {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+  }
+  h1 { animation-delay: 0.5s; }
+  h2 { animation-delay: 1s; }
+  h3 { animation-delay: 1.5s; }
+
+  #emoji {
+    font-size: 20vw;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 2s ease 2s forwards;
+    transition: all 0.5s ease;
+  }
+
+  /* 팝업 중앙 고정 + 닫기 버튼 */
+  #popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 400px;
+    max-width: 80vw;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    font-size: 1.2em;
+    z-index: 100;
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  #popup img {
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin: 0 auto 15px;
+  }
+
+  /* 닫기 버튼 */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #444;
+    transition: transform 0.2s;
+  }
+  .close-btn:hover {
+    transform: scale(1.3);
+    color: #000;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <h1>오늘의 운세!!!!</h1>
+  <h2>매일매일 확인해봐 >.^ </h2>
+  <h3>행운의 숫자만큼 조회 시… 비밀 암호를 찾을 수 있을거야!</h3>
+
+  <div id="emoji">🔮</div>
+
+  <div id="popup"></div>
+
+<script>
+  const popup = document.getElementById("popup");
+  const emoji = document.getElementById("emoji");
+  let clickCount = 0;
+
+  const messages = [
+    "🦋 — 모든 게 술술 풀리는 날! 우연히 마주친 인연이 복을 안겨줄지도.",
+    "🌷 — 평소보다 자신감 넘치는 하루, 네 말 한마디가 분위기를 바꿀 거야.",
+    "☀️ — 기대하지 않았던 곳에서 좋은 소식이 들려올 운세.",
+    "🌙 — 오늘은 직감이 예리해, 감정이 시키는 대로 움직여봐.",
+    "💎 — 주변에서 네 매력을 알아봐주는 날, 은근한 인기 상승 중~",
+    "🍀 — 작지만 확실한 행복이 찾아올 운세. 커피 한 잔의 여유를 즐겨봐.",
+    "🐚 — 무난한 하루지만, 작은 실수엔 살짝 주의하기!",
+    "🌼 — 누군가의 말에 상처받을 수 있으니 마음 단단히~ 그래도 곧 괜찮아질 거야.",
+    "🌧️ — 감정 기복이 살짝 있는 날, 혼자만의 시간으로 리셋해봐.",
+    "🌫️ — 피곤함이 쌓이기 쉬워, 무리하지 말고 일찍 쉬는 게 좋아.",
+    "🔮 — 잊고 있던 일들이 다시 떠오를 수 있어, 정리할 때가 온 듯해.",
+    "🌑 — 계획대로 안 될 수 있지만, 이건 단지 리듬을 맞추는 과정이야. 괜찮아."
+  ];
+
+  emoji.addEventListener("click", () => {
+    clickCount++;
+    popup.innerHTML = ""; // 초기화
+
+    let content = "";
+    if (clickCount === 7) {
+      content = `
+        <button class="close-btn">✖</button>
+        <img src="이미지2.png" alt="행운 이미지">
+        <p>작은 행운이 끊임없이 찾아올거야 °₊·ˈ∗♡</p>
+      `;
+    } else {
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      content = `
+        <button class="close-btn">✖</button>
+        <p>${randomMsg}</p>
+      `;
+    }
+
+    popup.innerHTML = content;
+    popup.style.display = "block";
+
+    // 닫기 버튼 동작
+    popup.querySelector(".close-btn").addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+  });
+</script>
+</body>
+</html>
+
